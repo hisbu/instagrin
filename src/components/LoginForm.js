@@ -24,7 +24,7 @@ class LoginForm extends Component{
             });
             this.props.navigation.dispatch(resetAction)
         }
-
+        console.log('=====di login page ======', this.props.user)
         // if(this.props.user){
             // this.props.navigation.navigate('MainMenu') //navigation berupa props dari navigation stack di component Main
         // }
@@ -54,6 +54,7 @@ class LoginForm extends Component{
 
     render(){
         const { containerStyle, inputStyle, buttonStyle } = styles;
+       
         if(this.props.checkedAuth && !this.props.user){
             return(
                 <View style={containerStyle}>
@@ -130,6 +131,7 @@ class LoginForm extends Component{
                             }
                             title="  Register"
                             type="outline"
+                            
                             onPress={()=>this.props.navigation.navigate('Register')}
                             containerStyle={{width:'100%'}}
                         />

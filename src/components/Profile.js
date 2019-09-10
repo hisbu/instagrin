@@ -7,6 +7,7 @@ import { View, Text, Platform, Image, ScrollView, TouchableWithoutFeedback } fro
 import { Header, ListItem, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { editProfileInit, postDetailInit } from '../actions'
+
 class Profile extends Component{
     state={
         postList: []
@@ -17,14 +18,14 @@ class Profile extends Component{
         .on('value', snapshot => { //akses data menggunakan 'value agar setiap ada perubahan di database firebase akan request data dari database'
             // console.log(snapshot.val())
             var postList = []
-            _.map(snapshot.val(), (val, id)=>{ //maping objek menggunakan lodash
+            _.map(snapshot.val(), (val, id)=>{ 
                 if(val.userId === this.props.user.user.uid){
                     postList.push({
                         ...val,
                         id
                     })
+                    this.setState({postList})
                 }
-                this.setState({postList})
                 console.log('=========> ')
             })
         })
@@ -34,8 +35,8 @@ class Profile extends Component{
         return this.state.postList.map((item)=>{
             return(
                 <View>
-                    <TouchableWithoutFeedback onPress={()=> this.onPostImagePress(item.id, item.imgUrl)} >
-                    <Image source={{uri: item.imgUrl }} style={{ width: 125, height: 125, marginBottom: 10}}/>
+                    <TouchableWithoutFeedback onPress={()=> this.onPostImagePress(item.id, item.imgUrl, item.caption)} >
+                    <Image source={{uri: item.imgUrl }} style={{ width: 129, height: 129, marginBottom: 2}}/>
 
                     </TouchableWithoutFeedback>
                 </View>
@@ -56,18 +57,20 @@ class Profile extends Component{
         this.props.navigation.navigate('EditProfile')
     }
 
-    onPostImagePress = (id, img) =>{
+    onPostImagePress = (id, img, caption) =>{
         this.props.postDetailInit(
             this.props.user.user.displayName,
             this.props.user.user.photoURL,
             img,
             this.props.user.user.uid,
-            id
+            id,
+            caption
         )
         this.props.navigation.navigate('PostDetail')
     }
 
     render(){
+     
         
         if(this.props.user && this.state.postList){
             return(

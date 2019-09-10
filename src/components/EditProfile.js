@@ -54,6 +54,10 @@ class EditProfile extends Component{
     }
 
     render () {
+        if(this.props.oldPhoto === null){
+            return <View/>
+        }
+    
         return (
             <View>
                  <Header
@@ -149,7 +153,7 @@ const mapStateToProps = ({editProfile, auth})=>{
         loading         : editProfile.loading,
         modalShow       : editProfile.modalShow,
         profileUpdated  : editProfile.profileUpdated,
-        oldPhoto        : auth.user.user.photoURL
+        oldPhoto        : auth.user ? auth.user.user.photoURL : null
         
     }
 }

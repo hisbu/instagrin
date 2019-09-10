@@ -5,6 +5,7 @@ import Profile from './Profile'
 import Settings from './Settings'
 import EditProfile from './EditProfile'
 import PostDetail from './PostDetail'
+import EditPost from './EditPost'
 
 const DrawerNavigator = createAppContainer(createDrawerNavigator(
     {

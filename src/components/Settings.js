@@ -14,6 +14,7 @@ class Settings extends Component{
         this.props.logoutUser();
     }
     render(){
+      
         return(
             <View style={{justifyContent:'center', alignItems:'center'}}>
                 <Header
@@ -52,7 +53,7 @@ class Settings extends Component{
 }
 
 const mapStateToProps = ({auth}) =>{
-    return { user: auth.user }
+    return { user: auth.user ? auth.user : null}
 }
 
 export default connect(mapStateToProps, { logoutUser }) (Settings);

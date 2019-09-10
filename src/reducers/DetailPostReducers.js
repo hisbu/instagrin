@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     image : '',
     userId : '',
     postId : '',
+    caption:'',
     detailModalShow: false
 }
 
@@ -18,9 +19,9 @@ export default (state = INITIAL_STATE, action) => {
         case POST_DETAIL_INIT:
             return {...INITIAL_STATE, ...action.payload}
         case DETAIL_MODAL_SHOW:
-            return { ...INITIAL_STATE, detailModalShow: true}
+            return { ...state, detailModalShow: true}
         case DETAIL_MODAL_CLOSE:
-            return {...INITIAL_STATE, detailModalShow: false}
+            return {...state, detailModalShow: false}
         default:
             return state
     }

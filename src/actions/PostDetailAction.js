@@ -1,6 +1,6 @@
 import { POST_DETAIL_INIT, DETAIL_MODAL_SHOW, DETAIL_MODAL_CLOSE } from './type'
 
-export const postDetailInit = (username, photoUrl, image, userId, postId) => {
+export const postDetailInit = (username, photoUrl, image, userId, postId, caption) => {
     return {
         type: POST_DETAIL_INIT,
         payload: {
@@ -8,7 +8,8 @@ export const postDetailInit = (username, photoUrl, image, userId, postId) => {
             photoUrl,
             image,
             userId,
-            postId
+            postId,
+            caption
         }
     }
 }
